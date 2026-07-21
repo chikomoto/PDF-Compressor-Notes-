@@ -1,4 +1,4 @@
-# PDF-Compressor-Notes
+# PDF-Compressor-Notes *EXPECTED PROJECT START DATE 1 AUG 2026*
 PDF Compressor Notes
 
 # PDF Compressor Project Prompt
