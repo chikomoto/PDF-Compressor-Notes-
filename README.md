@@ -1,4 +1,4 @@
-# PDF-Compressor-Notes
+# PDF-Compressor-Notes <span style="color: red;">**EXPECTED PROJECT START DATE: 1 AUG 2026**</span>
 
 <span style="color: red;">**EXPECTED PROJECT START DATE: 1 AUG 2026**</span>
 
