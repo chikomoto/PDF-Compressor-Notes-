@@ -1,4 +1,7 @@
-# PDF-Compressor-Notes *EXPECTED PROJECT START DATE 1 AUG 2026*
+# PDF-Compressor-Notes
+
+<span style="color: red;">**EXPECTED PROJECT START DATE: 1 AUG 2026**</span>
+
 PDF Compressor Notes
 
 # PDF Compressor Project Prompt
@@ -194,4 +197,3 @@ After the basic version works, help improve compression quality by:
 * Compressing only embedded images when possible.
 * Preserving selectable text when appropriate.
 * Matching or exceeding Compressa's output quality while keeping similar file sizes.
-
