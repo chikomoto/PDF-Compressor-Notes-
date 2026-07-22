@@ -1,445 +1,228 @@
-# PDF-Compressor-Notes <span style="color: red;">**EXPECTED PROJECT START DATE: 1 AUG 2026**</span>
+# PDF Compressor - Browser-Only
 
-<span style="color: red;">**EXPECTED PROJECT START DATE: 1 AUG 2026**</span>
+> **PROJECT START DATE: August 1, 2026**
 
-PDF Compressor Notes
+A privacy-first, browser-only PDF compressor built with Next.js. Files never leave your device.
 
-# PDF Compressor Project Prompt
+---
 
-Build a Browser-Only PDF Toolkit (Privacy-First)
+## Overview
 
-I want to build a modern browser-based PDF toolkit inspired by websites like Compressa, iLovePDF, Smallpdf and PDFgear.
+Build a modern PDF compressor that runs **entirely in the user's browser**, similar to [compressa.vercel.app](https://compressa.vercel.app).
 
-The entire application must be 100% client-side and privacy-first.
+**Key Principle:** No server uploads. No backend processing. Privacy first.
 
-Core Philosophy
+---
 
-This is NOT just another PDF website.
+## Tech Stack
 
-The biggest selling point is privacy.
+- **Framework:** Next.js (latest App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **PDF Libraries:** pdfjs-dist, pdf-lib
+- **Backend:** None (client-side only)
 
-Every operation must happen inside the user's browser.
+---
 
-Non-negotiable requirements
-No backend
-No server processing
-No cloud uploads
-No APIs for PDF processing
-No user accounts
-No login
-No database
-No cookies for uploaded files
-No analytics that inspect uploaded documents
-No saving any uploaded file
-No storing files anywhere
-No temporary server storage
+## Requirements
 
-Workflow:
+### What to Build
+- ✅ Client-side PDF compression (browser only)
+- ✅ Drag & drop file upload
+- ✅ Real-time progress tracking
+- ✅ Multiple compression presets
+- ✅ Responsive design (desktop & mobile)
+- ✅ Dark mode support
 
-Upload File
+### What NOT to Build
+- ❌ Backend/API routes
+- ❌ Database
+- ❌ Cloud storage
+- ❌ User authentication
+- ❌ Analytics (no PDF content tracking)
+- ❌ Server-side processing
 
-↓
+---
 
-Process Completely Inside Browser
+## Compression Method
 
-↓
+### Algorithm
+1. Load PDF with `pdfjs-dist`
+2. Render each page to canvas (scale ~1.3)
+3. Convert canvas to JPEG (quality ~0.62)
+4. Rebuild PDF with `pdf-lib`
+5. Remove metadata
+6. Flatten text into images
+7. Download locally
 
-Download Result
-
-↓
-
-Nothing is stored
-
-The website should repeatedly emphasize these privacy guarantees.
-
-For example:
-
-🔒 Your files never leave your device.
-
-Everything is processed locally inside your browser.
-
-No uploads. No cloud. No storage.
-
-Upload → Process → Download → Done.
-
-These privacy messages should appear naturally throughout the website.
-
-Tech Stack
-
-Use:
-
-React
-Vite
-React Router
-pdfjs-dist
-pdf-lib
-
-Additional libraries may be used only if needed.
-
-Everything must run locally.
-
-The website should be deployable as a static website on:
-
-GitHub Pages
-Vercel
-
-No backend deployment.
-
-Website Structure
-
-Single website.
-
-NOT multiple Vercel projects.
-
-Use React Router.
-
-Example:
-
-/
-Home
-
-/compress
-
-/merge
-
-/split
-
-/organize
-
-/scan
-
-Every tool should have its own clean page.
-
-Homepage
-
-Modern dark theme.
-
-Simple.
-
-Professional.
-
-Fast.
-
-Homepage contains cards:
-
-📦 Compress PDF
-
-📄 Merge PDF
-
-✂️ Split PDF
-
-🗂 Organize Pages
-
-📷 Scan Document
-
-Every card opens its own page.
-
-Shared UI
-
-Every tool shares:
-
-Navigation bar
-
-Footer
-
-Drag & Drop upload
-
-Progress bar
-
-Loading animation
-
-Download button
-
-Consistent styling
-
-Reusable React components
-
-Tool 1 — Compress PDF
-
-Build this first.
-
-Technology
-
-pdfjs-dist
-
-pdf-lib
-
-Compression Process
-
-For every page:
-
-Load PDF
-
-↓
-
-Render page
-
-↓
-
-Canvas
-
-↓
-
+### Flow
+```
+PDF Input
+  ↓
+Render Page (Canvas)
+  ↓
 Convert to JPEG
+  ↓
+Rebuild with pdf-lib
+  ↓
+Remove Metadata
+  ↓
+Download (Local)
+```
+
+---
+
+## Compression Presets
+
+| Preset | JPEG Quality | Scale | Use Case |
+|--------|-------------|-------|----------|
+| **Low** | 0.80 | 1.5 | High quality, larger files |
+| **Medium** | 0.62 | 1.3 | Balanced (default) |
+| **High** | 0.45 | 1.1 | Aggressive, smallest files |
+
+---
+
+## User Interface
+
+### Features
+- Large drag-and-drop zone
+- Browse file button (fallback)
+- Real-time progress bar
+- File statistics:
+  - Page count
+  - Original file size
+  - Estimated compressed size
+  - Final compressed size
+  - Compression percentage
+- Download button
+- Processing time display
+
+### Design
+- Modern, minimal aesthetic
+- Dark mode toggle
+- Mobile responsive
+- Accessibility compliant
+
+---
+
+## Privacy Guarantee
+
+Your files never leave your device.
+- ✅ All compression happens in your browser
+- ✅ No uploads to any server
+- ✅ No storage or retention
+- ✅ No logging of document contents
+- ✅ No analytics tracking PDFs
+
+---
+
+## Build Steps
+
+Follow this step-by-step approach:
+
+### Step 1: Initialize Project
+- Create Next.js app with TypeScript + Tailwind
+- Set up project structure
+
+### Step 2: PDF Rendering
+- Integrate `pdfjs-dist`
+- Render pages to canvas
+- Handle page iteration
+
+### Step 3: Compression Engine
+- Canvas to JPEG conversion
+- PDF rebuilding with `pdf-lib`
+- Metadata removal
+
+### Step 4: UI Components
+- File upload component (drag & drop)
+- Progress indicator
+- Statistics display
+- Preset selector
+
+### Step 5: Integration
+- Connect UI to compression logic
+- Add error handling
+- Performance optimization
+
+### Step 6: Polish
+- Dark mode
+- Mobile responsiveness
+- Accessibility
+- Performance tuning
+
+### Step 7: Deployment
+- Push to GitHub
+- Deploy on Vercel
+- Verify browser-only processing
+- Confirm no PDF data in network requests
+
+---
+
+## Nice-to-Have Features
+
+- [ ] Dark mode toggle
+- [ ] File size preview before compression
+- [ ] Cancel compression button
+- [ ] Multi-file queue
+- [ ] Drag multiple PDFs at once
+- [ ] "Download All" button
+- [ ] Processing time display
+- [ ] "Client-side only" badge
+- [ ] Compression statistics
 
-↓
+---
 
-Insert JPEG into new PDF
+## Performance Targets
 
-↓
+- ⚡ Handle large PDFs (50+ MB)
+- 💾 Low memory footprint
+- 📊 Progressive page processing
+- 🚀 Fast rendering
+- 🔒 Never freeze the browser
 
-Repeat
+---
 
-↓
+## Deployment Checklist
 
-Download compressed PDF
+- [ ] GitHub repository created
+- [ ] Vercel deployment configured
+- [ ] Test PDF compression works entirely in browser
+- [ ] Verify no PDF data in network tab
+- [ ] Privacy statement visible
+- [ ] Dark mode working
+- [ ] Mobile responsive
+- [ ] Performance acceptable
 
-Compression Presets
-Maximum
+---
 
-Smallest file size
+## Future Improvements
 
-Display:
+Once the MVP is complete:
 
-"Smallest file size (72 DPI)"
+- Detect image-heavy vs text-heavy PDFs
+- Selective image compression (when possible)
+- Preserve selectable text (when appropriate)
+- Match/exceed Compressa quality
+- Maintain similar file sizes
+- Advanced compression algorithms
+- Batch processing optimization
 
-Settings:
+---
 
-renderScale = 0.8
+## Getting Started
 
-jpegQuality = 0.45
+```bash
+npx create-next-app@latest pdf-compressor --typescript --tailwind
+cd pdf-compressor
+npm install pdfjs-dist pdf-lib
+npm run dev
+```
 
-Balanced (Default)
+Then build step by step. Do not generate everything at once.
 
-Display:
+---
 
-"Good quality (150 DPI)"
+## Privacy Statement (for website)
 
-Settings:
-
-renderScale = 1.3
-
-jpegQuality = 0.62
-
-This preset should mimic Compressa's balanced compression.
-
-High Quality
-
-Display:
-
-"Print Ready (300 DPI)"
-
-Settings:
-
-renderScale = 2.0
-
-jpegQuality = 0.85
-
-Minimal
-
-Display:
-
-"Professional (300+ DPI)"
-
-Settings:
-
-renderScale = 2.5
-
-jpegQuality = 0.95
-
-Show:
-
-Original file size
-
-Compressed file size
-
-Compression %
-
-Processing progress
-
-Download button
-
-Tool 2 — Merge PDF
-
-Allow multiple PDFs.
-
-Reorder by drag & drop.
-
-Merge.
-
-Download.
-
-Everything processed locally.
-
-Tool 3 — Split PDF
-
-Allow:
-
-Split every page
-
-Split by page range
-
-Split selected pages
-
-Everything processed locally.
-
-Tool 4 — Organize Pages
-
-Allow:
-
-Drag pages
-
-Reorder
-
-Delete pages
-
-Rotate pages
-
-Extract pages
-
-Preview thumbnails
-
-Everything processed locally.
-
-Tool 5 — Scan Document
-
-This replaces PDF-to-Image tools.
-
-The goal is a browser-based scanner similar to CamScanner, Adobe Scan or Microsoft Lens.
-
-Everything runs locally.
-
-No uploads.
-
-Workflow:
-
-Take photo or upload image
-
-↓
-
-Automatically detect paper edges
-
-↓
-
-Perspective correction
-
-↓
-
-Crop
-
-↓
-
-Remove shadows
-
-↓
-
-Enhance contrast
-
-↓
-
-Choose filter
-
-↓
-
-Generate PDF
-
-Scanner Filters
-
-Original
-
-Enhanced
-
-Black & White (photocopy style)
-
-Magic Color
-
-The Black & White filter should produce documents that look like they were scanned on a real office scanner:
-
-bright white background
-dark black text
-remove gray paper
-remove yellow lighting
-remove shadows
-sharpen text
-reduce noise
-
-The final PDF should resemble a photocopied or professionally scanned document.
-
-UI Requirements
-
-Modern dark interface.
-
-Responsive.
-
-Minimal.
-
-Fast.
-
-No clutter.
-
-Every page should feel focused.
-
-Code Requirements
-
-Use:
-
-React functional components
-
-Hooks
-
-Async/await
-
-Reusable components
-
-Modular architecture
-
-Clean folder structure
-
-Readable code
-
-Production-quality code
-
-Avoid duplicated logic.
-
-Suggested folder structure
-
-src/
-
-pages/
-    Home
-    Compress
-    Merge
-    Split
-    Organize
-    Scan
-
-components/
-    Navbar
-    Footer
-    UploadArea
-    ProgressBar
-    FileCard
-    Buttons
-
-utils/
-    compress.js
-    merge.js
-    split.js
-    organize.js
-    scan.js
-    pdfHelpers.js
-Important
-
-Do NOT generate everything at once.
-
-Build the project step by step.
-
-For every step:
-
-Explain the architecture.
-Explain why each library is used.
-Explain each file before writing it.
-Produce production-quality code, not a quick prototype.
-Keep everything modular and scalable.
-
-The final result should be a fast, modern, privacy-first PDF toolkit where all processing happens locally in the browser, with no uploads, no cloud processing, and no storage of user files. This privacy-first approach should be one of the application's defining features.
+> Your files never leave your device. Compression happens entirely in your browser. We do not upload, store, or retain your documents.
